@@ -1,0 +1,13 @@
+body {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+  .span {
+    color: gray;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Store - Trang chủ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0071e3;
+            --secondary-color: #f5f5f7;
+            --text-color: #1d1d1f;
+            --light-text: #86868b;
+            --sale-color: #ff3b30;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        
+        /* Header */
+        .main-header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        
+        .search-box {
+            border-radius: 20px;
+            padding-left: 40px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-text);
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            position: relative;
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 0.6rem;
+            background-color: var(--sale-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Category Menu */
+        .category-menu {
+            background-color: #000;
+            color: white;
+        }
+        
+        .category-item {
+            padding: 12px 0;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .category-item:hover {
+            color: var(--primary-color);
+        }
+        
+        .category-item i {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        /* Banner */
+        .main-banner {
+            background-color: #000;
+            color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .banner-content {
+            padding: 60px;
+        }
+        
+        .banner-subtitle {
+            color: var(--light-text);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .banner-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+        
+        .banner-text {
+            color: var(--light-text);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-weight: 500;
+        }
+        
+        /* Product Sections */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .product-card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-img-container {
+            height: 180px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .product-img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        .sale-badge {
+            background-color: var(--sale-color);
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        /* Tabs */
+        .nav-tabs .nav-link {
+            border: none;
+            color: var(--light-text);
+            font-weight: 500;
+            padding: 8px 15px;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            background-color: transparent;
+        }
+        
+        /* Footer */
+        .main-footer {
+            background-color: #f5f5f7;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .footer-link {
+            color: var(--light-text);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .banner-content {
+                padding: 30px;
+            }
+            
+            .banner-title {
+                font-size: 2rem;
+            }
+            
+            .category-item {
+                padding: 8px 0;
+                font-size: 0.9rem;
+            }
+            
+            .category-item i {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3 col-6">
+                    <div class="logo">Cyber</div>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                    <div class="position-relative">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="form-control search-box" placeholder="Tìm kiếm sản phẩm...">
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 text-end">
+                    <div class="d-flex justify-content-end gap-4">
+                        <a href="#" class="nav-icon"><i class="far fa-heart"></i></a>
+                        <a href="#" class="nav-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge">3</span>
+                        </a>
+                        <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Menu -->
+    <div class="category-menu py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <a href="#" class="category-item text-white text-decoration-none">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Điện thoại</span>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a href="#" class="category-item text-white text-decoration-none">
+                        <i class="fas fa-laptop"></i>
+                        <span>Laptop</span>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a href="#" class="category-item text-white text-decoration-none">
+                        <i class="fas fa-clock"></i>
+                        <span>Đồng hồ</span>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a href="#" class="category-item text-white text-decoration-none">
+                        <i class="fas fa-camera"></i>
+                        <span>Cameras</span>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a href="#" class="category-item text-white text-decoration-none">
+                        <i class="fas fa-headphones"></i>
+                        <span>Tai nghe</span>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a href="#" class="category-item text-white text-decoration-none">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Gaming</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        <!-- Main Banner -->
+        <div class="main-banner">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="banner-content">
+                        <p class="banner-subtitle">Đột phá công nghệ</p>
+                        <h1 class="banner-title">iPhone 14 Pro</h1>
+                        <p class="banner-text">Được tạo ra để thay đổi mọi thứ để tốt hơn. Cho tất cả mọi người</p>
+                        <button class="btn btn-primary">Mua ngay</button>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                    <img src="https://phucanhcdn.com/media/product/48787_iphone_14_pro_max_purple_1.jpg" alt="iPhone 14 Pro" class="img-fluid">
+                </div>
+            </div>
+        </div>
+
+        <!-- New Arrival Section -->
+        <section class="my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title">New Arrival</h2>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Bestseller</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Featured Products</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="row">
+                <!-- Product 1 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="https://phucanhcdn.com/media/product/48787_iphone_14_pro_max_purple_1.jpg" alt="iPhone 14 Pro Max" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">Apple iPhone 14 Pro Max 128GB Deep Purple</h5>
+                            <p class="product-price">$900</p>
+                            <span class="sale-badge">Giảm giá</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="https://www.apple.com/v/watch/compare/r/images/overview/compare_s9__csqq0t0k9xqe_large.jpg" alt="Apple Watch" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">Apple Watch Series 9 GPS 41mm Starlight Aluminium</h5>
+                            <p class="product-price">$399</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="https://images.samsung.com/vn/smartphones/galaxy-s23-ultra/images/galaxy-s23-ultra-highlights-kv.jpg" alt="Samsung Galaxy" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">Samsung Galaxy Watch6 Classic 41mm Black</h5>
+                            <p class="product-price">$369</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="https://www.apple.com/v/airpods-max/c/images/overview/hero_front__gnfk5g59t0qe_large.jpg" alt="AirPods Max" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">AirPods Max Silver</h5>
+                            <p class="product-price">$549</p>
+                            <span class="sale-badge">Giảm giá</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discount Products Section -->
+        <section class="my-5">
+            <h2 class="section-title">Sản phẩm giảm giá</h2>
+            <div class="row">
+                <!-- Product 5 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="https://phucanhcdn.com/media/product/48787_iphone_14_pro_max_purple_1.jpg" alt="iPhone 14 Pro" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">Apple iPhone 14 Pro 128GB Gold</h5>
+                            <p class="product-price">$1288 <small class="original-price">$1437</small></p>
+                            <span class="sale-badge">Tiết kiệm $149</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="https://images.samsung.com/is/image/samsung/p6pim/vn/2302/gallery/vn-galaxy-s23-ultra-5g-sm-s918-413371-sm-s918nzggxxv-534866823?$650_519_PNG$" alt="Samsung Galaxy" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">Samsung Galaxy S23 Ultra 256GB Premium Black</h5>
+                            <p class="product-price">$999 <small class="original-price">$1199</small></p>
+                            <span class="sale-badge">Tiết kiệm $200</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="https://www.apple.com/v/ipad-air/c/images/overview/compare/compare_ipad_air__bxjv33j1x02q_large.jpg" alt="iPad" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">iPad 10.2" 64GB Wi-Fi Silver (9th Gen)</h5>
+                            <p class="product-price">$399 <small class="original-price">$499</small></p>
+                            <span class="sale-badge">Tiết kiệm $100</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="https://www.apple.com/v/macbook-air/c/images/overview/compare/compare_mba_15__f1zcozwyyymy_large.jpg" alt="MacBook" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">MacBook Air 13" M1 256GB Gold</h5>
+                            <p class="product-price">$999 <small class="original-price">$1199</small></p>
+                            <span class="sale-badge">Tiết kiệm $200</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Brands Section -->
+        <section class="my-5">
+            <h2 class="section-title">Thương hiệu nổi bật</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-between align-items-center bg-white p-4 rounded">
+                        <img src="https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?202309130254" alt="Apple" style="height: 40px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png" alt="Samsung" style="height: 20px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Xiaomi_logo_%282021-%29.svg/2048px-Xiaomi_logo_%282021-%29.svg.png" alt="Xiaomi" style="height: 30px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Oppo_LOGO_2019.svg/1200px-Oppo_LOGO_2019.svg.png" alt="Oppo" style="height: 30px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Huawei_Standard_logo.svg/2560px-Huawei_Standard_logo.svg.png" alt="Huawei" style="height: 25px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5 class="footer-title">Về chúng tôi</h5>
+                    <p style="color: var(--light-text);">Cyber là cửa hàng công nghệ hàng đầu, cung cấp các sản phẩm chất lượng với giá cả hợp lý.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="footer-title">Danh mục</h5>
+                    <a href="#" class="footer-link">Điện thoại</a>
+                    <a href="#" class="footer-link">Laptop</a>
+                    <a href="#" class="footer-link">Đồng hồ</a>
+                    <a href="#" class="footer-link">Tai nghe</a>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="footer-title">Hỗ trợ</h5>
+                    <a href="#" class="footer-link">Trung tâm hỗ trợ</a>
+                    <a href="#" class="footer-link">Chính sách bảo hành</a>
+                    <a href="#" class="footer-link">Hướng dẫn mua hàng</a>
+                    <a href="#" class="footer-link">Câu hỏi thường gặp</a>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="footer-title">Liên hệ</h5>
+                    <a href="#" class="footer-link"><i class="fas fa-map-marker-alt me-2"></i> 123 Đường ABC, Hà Nội</a>
+                    <a href="#" class="footer-link"><i class="fas fa-phone me-2"></i> 0987.654.321</a>
+                    <a href="#" class="footer-link"><i class="fas fa-envelope me-2"></i> info@cyber.vn</a>
+                    <div class="mt-3">
+                        <a href="#" class="text-decoration-none me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-decoration-none me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-decoration-none me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-decoration-none"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col text-center" style="color: var(--light-text);">
+                    <p>© 2023 Cyber. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+</body>
+</html>

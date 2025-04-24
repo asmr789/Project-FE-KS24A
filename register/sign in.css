@@ -1,0 +1,64 @@
+body {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: left;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.container>p {
+    color: gray;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #007AFF;
+    text-decoration: none;
+}
+
+.policy {
+    color: #007AFF;
+    text-decoration: none;
+}
+label {
+    margin: 20px 0px 20px 0px;
+}
+@media (max-width: 767px) {
+    .container {
+        padding: 15px;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .form-row {
+        flex-direction: column;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    #inputEmail4 {
+        width: 100%;
+    }
+    .container > p {
+        font-size: 13px;
+    }
+}
