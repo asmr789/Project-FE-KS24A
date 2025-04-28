@@ -1,4 +1,4 @@
-/* phần header */
+/* ==================   phần header =============================*/
 .search-box {
   background-color: #f0f0f0;
   border-radius: 5px;
@@ -39,7 +39,7 @@ body,html {
 .sub-menu span {
   color: #555;
 }
-
+/*========================  PHẦN  BANNNER  =================================*/
 .banner {
   background-color: #211C24;
   color: white;
@@ -49,9 +49,8 @@ body,html {
   width: 100%;
   height: 500px;
 }
-
-/* phần banner */
 .banner-text {
+  margin-top: 50px;
   max-width: 100%;
   max-height: 900px;
   margin-left: 100px;
@@ -90,13 +89,23 @@ body,html {
   background-color: white;
   color: #1c1824;
 }
-/* phần category */
+.banner-image {
+  width: 406px;
+  height: 800px;
+  top: 73px;
+}
+.banner-image img {
+  margin: 200px 0px 0px 20px;
+}
+/* ======================== phần category =======================*/
 .category-box {
   max-width: 80%;
   margin: 0 auto;
   padding: 20px;
   gap: 32px;
   font-size: 17px;
+  position: relative;
+  z-index: 10;
 }
 
 .category-header {
@@ -133,7 +142,7 @@ body,html {
   flex: 1 1 120px;
   text-align: center;
 }
-/* phần footer */
+/* ======================= phần footer ============================*/
 
 .footer {
   display: flex;
@@ -176,9 +185,8 @@ body,html {
 .footer p {
   font-size: 14px;
 }
-/* phần product */
+/*============================ phần product ===========================*/
 
-  
   /* ===== SẢN PHẨM MỚI & BESTSELLER ===== */
   .products {
     margin: 50px auto;
@@ -203,7 +211,7 @@ body,html {
     border-bottom: 2px solid #212529;
   }
   
-  /* ===== LƯỚI SẢN PHẨM ===== */
+  /* ================  LƯỚI SẢN PHẨM ================ */
   .products-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -211,7 +219,7 @@ body,html {
     margin-top: 20px;
   }
   
-  /* ===== THẺ SẢN PHẨM ===== */
+  /* ========= THẺ SẢN PHẨM ============== */
   .product-card {
     background: #fff;
     border-radius: 8px;
@@ -276,7 +284,7 @@ body,html {
     color: #212529;
   }
   
-  /* ===== NÚT YÊU THÍCH ===== */
+  /* ============= NÚT YÊU THÍCH =============== */
   .favorite {
     position: absolute;
     top: 10px;
@@ -307,7 +315,7 @@ body,html {
     color: #ff3b30;
   }
   
-  /* ===== THÔNG TIN SẢN PHẨM ===== */
+  /* =================== THÔNG TIN SẢN PHẨM =================== */
   .product-info {
     padding: 15px;
   }
@@ -347,7 +355,7 @@ body,html {
     background: #343a40;
   }
   
-  /* ===== BANNER ƯU ĐÃI MÙA HÈ ===== */
+  /* =================== BANNER ƯU ĐÃI MÙA HÈ ====================== */
   .summer-sale {
     background: #232127;
     color: #fff;
