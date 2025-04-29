@@ -13,7 +13,7 @@ form.addEventListener("submit", function (e) {
 
   const emailValue = emailInput.value.trim();
   const passwordValue = passwordInput.value.trim();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //kiểm tra định dạng email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // kiểm tra định dạng email
 
   if (emailValue === "") {
     emailError.textContent = "Email không được để trống";
@@ -29,7 +29,14 @@ form.addEventListener("submit", function (e) {
   }
 
   if (!hasError) {
-    window.confirm("Đăng nhập thành công");
-    form.submit();
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const matchedUser = users.find(user => user.email === emailValue && user.password === passwordValue);
+
+    if (matchedUser) {
+      window.confirm("Đăng nhập thành công!");
+      window.location.href = "/product-manager/product-statistics.html";
+    } else {
+      passwordError.textContent = "Email hoặc mật khẩu không đúng!";
+    }
   }
 });

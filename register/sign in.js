@@ -49,9 +49,18 @@ form.addEventListener("submit", function (event) {
     }
 
     if (valid) {
+        const user = {
+            fullname: fullname.value.trim(),
+            firstname: firstname.value.trim(),
+            email: email.value.trim(),
+            password: password.value.trim()
+        };
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        users.push(user);
+        localStorage.setItem('users', JSON.stringify(users));
         confirm("Đăng ký thành công!");
         form.reset();
-        window.location.href="../Login/login.html"
+        window.location.href="../Login/login.html";
     }
 });
 

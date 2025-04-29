@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./product.css">
+</head>
+
+<body>
+    <div class="d-flex">
+        <nav class="sidebar p-3">
+            <div class="mb-4 d-flex align-items-center">
+                <i class="ri-store-2-line fs-4 me-2 text-danger"></i>
+                <span class="fw-bold fs-5">Ecommerce</span>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#"><i class="ri-bar-chart-2-line"></i> Thống kê</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="categoryLink"><i class="ri-folder-line"></i> Danh mục</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" id="productLink"><i class="ri-shopping-bag-line"></i> Sản
+                        phẩm</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="main-content flex-fill">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div></div>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-light position-relative rounded-circle p-2 notification-btn">
+                        <i class="ri-notification-3-line fs-5"></i>
+                    </button>
+                    <img src="../image/icons/Ellipse 6.png" class="rounded-circle" style="width: 40px; height: 40px;"
+                        alt="Avatar">
+                    <button class="btn btn-outline-danger" id="logoutBtn">
+                        <i class="ri-logout-box-line"></i> Log out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryLink = document.getElementById('categoryLink');
+            const productLink = document.getElementById('productLink');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            function navigateTo(page) {
+                switch(page) {
+                    case 'category':
+                        window.location.href = 'product-manager.html';
+                        break;
+                    case 'product':
+                        window.location.href = 'product-list.html';
+                        break;
+                }
+            }
+
+            categoryLink.addEventListener('click', () => navigateTo('category'));
+            productLink.addEventListener('click', () => navigateTo('product'));
+            
+            logoutBtn.addEventListener('click', function() {
+                window.location.href = '../Login/login.html';
+            });
+        });
+    </script>
+</body>
+</html>
