@@ -1,4 +1,3 @@
-  <!-- Modal thêm danh mục -->
   <div class="modal fade" id="exampleModalAddCategory" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">

@@ -1,401 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lý sản phẩm</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./product.css">
+  <title>Quản lý danh mục</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="product.css">
 </head>
-
 <body>
-  <div class="d-flex">
-    <nav class="sidebar p-3">
-      <div class="mb-4 d-flex align-items-center">
-        <i class="ri-store-2-line fs-4 me-2 text-danger"></i>
-        <span class="fw-bold fs-5">Ecommerce</span>
-      </div>
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="#"><i class="ri-bar-chart-2-line"></i> Thống kê</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="categoryLink"><i class="ri-folder-line"></i> Danh mục</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#" id="productLink"><i class="ri-shopping-bag-line"></i> Sản phẩm</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="main-content flex-fill">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <div></div>
-        <div class="d-flex align-items-center gap-3">
-          <button class="btn btn-light position-relative rounded-circle p-2 notification-btn">
-            <i class="ri-notification-3-line fs-5"></i>
-          </button>
-          <img src="../image/icons/Ellipse 6.png" class="rounded-circle" style="width: 40px; height: 40px;"
-            alt="Avatar">
-        </div>
-      </div>
-
-      <!-- Phần Danh mục (ẩn ban đầu) -->
-      <div class="card border-0 shadow-sm mb-4" id="categorySection" style="display: none;">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="card-title mb-0">Danh mục</h2>
-            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalAddCategory">
-              <i class="ri-add-line me-1"></i>Thêm mới danh mục
-            </button>
-          </div>
-
-          <div class="d-flex gap-2 justify-content-end mb-3">
-            <select class="form-select w-auto">
-              <option selected>Đang hoạt động</option>
-              <option>Ngừng hoạt động</option>
-              <option>Tất cả</option>
-            </select>
-            <div class="input-group w-auto">
-              <input type="text" class="form-control" placeholder="Tìm kiếm danh mục theo tên" />
-              <button class="btn btn-outline-secondary" type="button"><i class="ri-search-line"></i></button>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-fire"></i>
+                <span>Ecommerce</span>
             </div>
-          </div>
-
-          <div class="table-responsive">
-            <table class="table mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th>Mã danh mục <i class="ri-arrow-down-s-line"></i></th>
-                  <th>Tên danh mục <i class="ri-arrow-down-s-line"></i></th>
-                  <th>Trạng thái</th>
-                  <th class="text-end">Chức năng</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>DM001</td>
-                  <td>Quần áo</td>
-                  <td><span class="status active"><span>●</span>Đang hoạt động</span></td>
-                  <td class="text-end">
-                    <button class="btn-icon text-warning"><i class="ri-edit-line"></i></button>
-                    <button class="btn-icon text-danger"><i class="ri-delete-bin-line"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>DM002</td>
-                  <td>Kính mắt</td>
-                  <td><span class="status inactive"><span>●</span>Ngừng hoạt động</span></td>
-                  <td class="text-end">
-                    <button class="btn-icon text-warning"><i class="ri-edit-line"></i></button>
-                    <button class="btn-icon text-danger"><i class="ri-delete-bin-line"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>DM003</td>
-                  <td>Điện thoại</td>
-                  <td><span class="status active"><span>●</span>Đang hoạt động</span></td>
-                  <td class="text-end">
-                    <button class="btn-icon text-warning"><i class="ri-edit-line"></i></button>
-                    <button class="btn-icon text-danger"><i class="ri-delete-bin-line"></i></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <nav class="mt-3">
-            <ul class="pagination justify-content-center">
-              <li class="page-item"><a class="page-link" href="#">«</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item active"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">5</a></li>
-              <li class="page-item disabled"><span class="page-link">...</span></li>
-              <li class="page-item"><a class="page-link" href="#">20</a></li>
-              <li class="page-item"><a class="page-link" href="#">»</a></li>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-solid fa-house"></i>Thống kê
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <i class="fa-solid fa-folder"></i>Danh mục
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-solid fa-bag-shopping"></i>Sản phẩm
+                    </a>
+                </li>
             </ul>
-          </nav>
         </div>
-      </div>
-
-      <!-- Phần Sản phẩm (hiển thị ban đầu) -->
-      <div class="card border-0 shadow-sm mb-4" id="productSection">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="card-title mb-0">Sản phẩm</h2>
-            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalAddProduct">
-              <i class="ri-add-line me-1"></i>Thêm mới sản phẩm
-            </button>
-          </div>
-
-          <div class="d-flex gap-2 justify-content-end mb-3">
-            <select class="form-select w-auto">
-              <option selected>Tất cả danh mục</option>
-              <option>Điện thoại</option>
-              <option>Quần áo</option>
-              <option>Kính mắt</option>
-            </select>
-            <select class="form-select w-auto">
-              <option selected>Tất cả trạng thái</option>
-              <option>Đang hoạt động</option>
-              <option>Ngừng hoạt động</option>
-            </select>
-            <div class="input-group w-auto">
-              <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm theo tên" />
-              <button class="btn btn-outline-secondary" type="button"><i class="ri-search-line"></i></button>
+        <div class="main-content">
+            <div class="header">
+                <div class="user-actions">
+                    <button class="notification-btn">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+                    <img src="../image/icons/Ellipse 6.png" class="avatar" alt="Avatar">
+                </div>
             </div>
-          </div>
 
-          <div class="table-responsive">
-            <table class="table mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th>Mã sản phẩm <i class="ri-arrow-down-s-line"></i></th>
-                  <th>Tên sản phẩm <i class="ri-arrow-down-s-line"></i></th>
-                  <th>Giá <i class="ri-arrow-down-s-line"></i></th>
-                  <th>Số lượng <i class="ri-arrow-down-s-line"></i></th>
-                  <th>Giảm giá</th>
-                  <th>Trạng thái</th>
-                  <th class="text-end">Chức năng</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>SP001</td>
-                  <td>Iphone 12 Pro</td>
-                  <td>12.000.000 đ</td>
-                  <td>10</td>
-                  <td><span class="discount-badge">0%</span></td>
-                  <td><span class="status active"><span>●</span>Đang hoạt động</span></td>
-                  <td class="text-end">
-                    <button class="btn-icon text-warning"><i class="ri-edit-line"></i></button>
-                    <button class="btn-icon text-danger"><i class="ri-delete-bin-line"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>SP002</td>
-                  <td>Samsung Galaxy X20</td>
-                  <td>21.000.000 đ</td>
-                  <td>100</td>
-                  <td><span class="discount-badge">5%</span></td>
-                  <td><span class="status inactive"><span>●</span>Ngừng hoạt động</span></td>
-                  <td class="text-end">
-                    <button class="btn-icon text-warning"><i class="ri-edit-line"></i></button>
-                    <button class="btn-icon text-danger"><i class="ri-delete-bin-line"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>SP003</td>
-                  <td>Phone 8 Plus</td>
-                  <td>5.000.000 đ</td>
-                  <td>10</td>
-                  <td><span class="discount-badge">0%</span></td>
-                  <td><span class="status active"><span>●</span>Đang hoạt động</span></td>
-                  <td class="text-end">
-                    <button class="btn-icon text-warning"><i class="ri-edit-line"></i></button>
-                    <button class="btn-icon text-danger"><i class="ri-delete-bin-line"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>SP004</td>
-                  <td>Iphone 14 Pro max</td>
-                  <td>25.000.000 đ</td>
-                  <td>20</td>
-                  <td><span class="discount-badge">2%</span></td>
-                  <td><span class="status inactive"><span>●</span>Ngừng hoạt động</span></td>
-                  <td class="text-end">
-                    <button class="btn-icon text-warning"><i class="ri-edit-line"></i></button>
-                    <button class="btn-icon text-danger"><i class="ri-delete-bin-line"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>SP005</td>
-                  <td>Oppo X3</td>
-                  <td>2.000.000 đ</td>
-                  <td>10</td>
-                  <td><span class="discount-badge">5%</span></td>
-                  <td><span class="status inactive"><span>●</span>Ngừng hoạt động</span></td>
-                  <td class="text-end">
-                    <button class="btn-icon text-warning"><i class="ri-edit-line"></i></button>
-                    <button class="btn-icon text-danger"><i class="ri-delete-bin-line"></i></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <nav class="mt-3">
-            <ul class="pagination justify-content-center">
-              <li class="page-item"><a class="page-link" href="#">«</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item disabled"><span class="page-link">...</span></li>
-              <li class="page-item"><a class="page-link" href="#">10</a></li>
-              <li class="page-item"><a class="page-link" href="#">»</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal thêm danh mục -->
-  <div class="modal fade" id="exampleModalAddCategory" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Thêm mới danh mục</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="card border-0 shadow-sm mb-4">
-            <div class="card-body">
-              <form>
-                <div class="mb-3">
-                  <label for="categoryCode" class="form-label">Mã danh mục</label>
-                  <input type="text" class="form-control" id="categoryCode">
+            <div class="content-wrapper">
+                <div class="d-flex justify-content-between align-items-center mx-4 mt-4">
+                    <h2>Danh mục</h2>
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-plus me-2"></i>Thêm mới danh mục
+                    </button>
                 </div>
-
-                <div class="mb-3">
-                  <label for="categoryName" class="form-label">Tên danh mục</label>
-                  <input type="text" class="form-control" id="categoryName">
-                </div>
-
-                <div class="mb-4">
-                  <label class="form-label">Trạng thái</label>
-                  <div style="display: flex;">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="status" id="activeStatus" checked>
-                      <label class="form-check-label" for="activeStatus">Đang hoạt động</label>
-                    </div>
-                    <div class="form-check" style="margin-left: 20px;">
-                      <input class="form-check-input" type="radio" name="status" id="inactiveStatus">
-                      <label class="form-check-label" for="inactiveStatus">Ngừng hoạt động</label>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-            <button type="button" class="btn btn-primary">Thêm</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal thêm sản phẩm -->
-  <div class="modal fade" id="exampleModalAddProduct" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Thêm mới sản phẩm</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="card border-0 shadow-sm mb-4">
-            <div class="card-body">
-              <form>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <label for="productCode" class="form-label">Mã sản phẩm</label>
-                    <input type="text" class="form-control" id="productCode" placeholder="Nhập mã sản phẩm">
-                  </div>
-                  <div class="col-md-6">
-                    <label for="productName" class="form-label">Tên sản phẩm</label>
-                    <input type="text" class="form-control" id="productName" placeholder="Nhập tên sản phẩm">
-                  </div>
-                </div>
-                
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <label for="productCategory" class="form-label">Danh mục</label>
-                    <select class="form-select" id="productCategory">
-                      <option selected>Chọn danh mục</option>
-                      <option>Điện tử</option>
-                      <option>Thời trang</option>
-                      <option>Đồ gia dụng</option>
+                <div class="d-flex gap-2 justify-content-end mb-3 mx-4 mt-4">
+                    <select class="form-select w-auto">
+                        <option selected>Đang hoạt động</option>
+                        <option>Ngừng hoạt động</option>
+                        <option>Tất cả</option>
                     </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Trạng thái</label>
-                    <div class="d-flex gap-3">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productStatus" id="productActive" checked>
-                        <label class="form-check-label" for="productActive">Đang hoạt động</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="productStatus" id="productInactive">
-                        <label class="form-check-label" for="productInactive">Ngừng hoạt động</label>
-                      </div>
+                    <div class="input-group w-auto">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm danh mục theo tên">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fa-solid fa-search"></i>
+                        </button>
                     </div>
-                  </div>
                 </div>
-                
-                <div class="mb-3">
-                  <label class="form-label">Số lượng & Giá</label>
-                  <div class="table-responsive">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Số lượng</th>
-                          <th>Giá</th>
-                          <th>Giá khuyến mãi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><input type="number" class="form-control" value="1"></td>
-                          <td><input type="number" class="form-control" value="10000000"></td>
-                          <td><input type="number" class="form-control" value="9500000"></td>
-                        </tr>
-                      </tbody>
+                <div class="table-responsive mx-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Mã danh mục <i class="fa-solid fa-arrow-down-short-wide"></i></th>
+                                <th>Tên danh mục <i class="fa-solid fa-arrow-down-short-wide"></i></th>
+                                <th>Trạng thái</th>
+                                <th >Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DM001</td>
+                                <td>Quần áo</td>
+                                <td><span class="status active">●&nbsp;Đang hoạt động</span></td>
+                                <td >
+                                    <button class="btn btn-link text-warning p-0 me-2"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DM002</td>
+                                <td>Kính mắt</td>
+                                <td><span class="status inactive">●&nbsp;Ngừng hoạt động</span></td>
+                                <td>
+                                    <button class="btn btn-link text-warning p-0 me-2"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DM003</td>
+                                <td>Giày dép</td>
+                                <td><span class="status active">●&nbsp;Đang hoạt động</span></td>
+                                <td >
+                                    <button class="btn btn-link text-warning p-0 me-2"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DM004</td>
+                                <td>Thời trang nam</td>
+                                <td><span class="status inactive">●&nbsp;Ngừng hoạt động</span></td>
+                                <td >
+                                    <button class="btn btn-link text-warning p-0 me-2"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DM005</td>
+                                <td>Thời trang nữ</td>
+                                <td><span class="status active">●&nbsp;Đang hoạt động</span></td>
+                                <td >
+                                    <button class="btn btn-link text-warning p-0 me-2"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td>DM006</td>
+                                <td>Hoa quả</td>
+                                <td><span class="status inactive">●&nbsp;Ngừng hoạt động</span></td>
+                                <td >
+                                    <button class="btn btn-link text-warning p-0 me-2"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td>DM007</td>
+                                <td>Rau</td>
+                                <td><span class="status active">●&nbsp;Đang hoạt động</span></td>
+                                <td >
+                                    <button class="btn btn-link text-warning p-0 me-2"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>DM008</td>
+                                <td>Điện thoại</td>
+                                <td><span class="status inactive">●&nbsp;Ngừng hoạt động</span></td>
+                                <td >
+                                    <button class="btn btn-link text-warning p-0 me-2"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
-                  </div>
                 </div>
-                
-                <div class="mb-3">
-                  <label for="productImage" class="form-label">Hình ảnh</label>
-                  <input type="file" class="form-control" id="productImage">
-                  <div class="mt-2">
-                    <small class="text-muted">Hoặc nhập URL hình ảnh:</small>
-                    <input type="text" class="form-control mt-1" placeholder="ákdjáuidhiudfh">
-                  </div>
-                </div>
-                
-                <div class="mb-4">
-                  <label for="productSpecs" class="form-label">Chỉ tiêu sản phẩm</label>
-                  <textarea class="form-control" id="productSpecs" rows="3" placeholder="Nhập thông số kỹ thuật"></textarea>
-                </div>
-                
-                <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
-                </div>
-              </form>
+                <nav aria-label="Page navigation" class="mt-3">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#">«</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                        <li class="page-item"><a class="page-link" href="#">20</a></li>
+                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                    </ul>
+                </nav>
             </div>
+        </div>
+    </div>
+      <!-- Modal thêm danh mục -->
+  <div class="modal fade" id="exampleModalAddCategory" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm mới danh mục</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-body">
+            <form>
+              <div class="mb-3">
+                <label for="categoryCode" class="form-label">Mã danh mục</label>
+                <input type="text" class="form-control" id="categoryCode">
+              </div>
+
+              <div class="mb-3">
+                <label for="categoryName" class="form-label">Tên danh mục</label>
+                <input type="text" class="form-control" id="categoryName">
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label">Trạng thái</label>
+                <div style="display: flex;">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" id="activeStatus" checked>
+                    <label class="form-check-label" for="activeStatus">Đang hoạt động</label>
+                  </div>
+                  <div class="form-check" style="margin-left: 20px;">
+                    <input class="form-check-input" type="radio" name="status" id="inactiveStatus">
+                    <label class="form-check-label" for="inactiveStatus">Ngừng hoạt động</label>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-            <button type="button" class="btn btn-primary">Thêm</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+          <button type="button" class="btn btn-primary">Thêm</button>
         </div>
       </div>
     </div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
-    integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
-    crossorigin="anonymous"></script>
-    <script src="./product-manager.js"></script>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./product-manager.js"></script>
 </body>
-
 </html>

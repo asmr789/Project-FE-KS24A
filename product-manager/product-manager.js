@@ -1,15 +1,31 @@
-document.getElementById('categoryLink').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.getElementById('categorySection').style.display = 'block';
-    document.getElementById('productSection').style.display = 'none';
-    document.getElementById('categoryLink').classList.add('active');
-    document.getElementById('productLink').classList.remove('active');
-  });
+document.addEventListener('DOMContentLoaded', function() {
+    // chờ trang wed tải xong mới chạy code
+    var menuItems = document.querySelectorAll('.nav-link');
+    menuItems.forEach(function(item) {
+        var icon = item.querySelector('i');
+        
+        if (icon.classList.contains('fa-house')) {
+            item.href = 'product-statistics.html';
+        } 
+        else if (icon.classList.contains('fa-folder')) {
+            item.href = 'product-manager.html';
+        } 
+        else if (icon.classList.contains('fa-bag-shopping')) {
+            item.href = 'product-list.html';
+        }
+        var currentPage = window.location.pathname.split('/').pop();
+        if (item.getAttribute('href') === currentPage) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
 
-  document.getElementById('productLink').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.getElementById('categorySection').style.display = 'none';
-    document.getElementById('productSection').style.display = 'block';
-    document.getElementById('productLink').classList.add('active');
-    document.getElementById('categoryLink').classList.remove('active');
-  });
+    // Xử lý nút đăng xuất
+    var logoutButton = document.querySelector('.logout-btn');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', function() {
+            window.location.href = '../Login/login.html';
+        });
+    }
+});
