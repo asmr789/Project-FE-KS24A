@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản lý sản phẩm</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="product.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="product.css">
 </head>
+
 <body>
     <div class="container">
         <div class="sidebar">
@@ -46,7 +48,7 @@
             <div class="content-wrapper">
                 <div class="d-flex justify-content-between align-items-center mx-4 mt-4">
                     <h2>Sản phẩm</h2>
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalAddProduct">
                         <i class="fa-solid fa-plus me-2"></i>Thêm mới sản phẩm
                     </button>
                 </div>
@@ -54,11 +56,14 @@
                     <select class="form-select w-auto">
                         <option>Lọc theo danh mục</option>
                     </select>
-                    <select class="form-select w-auto">
+                    <select class="form-select w-auto" id="statusFilter">
                         <option>Lọc theo trạng thái</option>
-                    </select>
+                        <option> Đang hoạt động</option>
+                        <option>Ngừng hoạt động</option>
+                        <option>Tất cả</option>
+                    </select> 
                     <div class="input-group w-auto">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm theo tên">
+                        <input id="searchInput" type="text" class="form-control" placeholder="Tìm kiếm sản phẩm theo tên">
                         <button class="btn btn-outline-secondary" type="button">
                             <i class="fa-solid fa-search"></i>
                         </button>
@@ -86,92 +91,10 @@
                                 <td>0%</td>
                                 <td><span class="status active">●&nbsp;Đang hoạt động</span></td>
                                 <td>
-                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                                    <button class="btn btn-link text-warning p-0 ms-2"><i class="fa-solid fa-pen"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>SP002</td>
-                                <td>Samsung Galaxy X20</td>
-                                <td>21.000.000 đ</td>
-                                <td>100</td>
-                                <td>5%</td>
-                                <td><span class="status inactive">●&nbsp;Ngừng hoạt động</span></td>
-                                <td>
-                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                                    <button class="btn btn-link text-warning p-0 ms-2"><i class="fa-solid fa-pen"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>SP003</td>
-                                <td>Macbook Pro 16 inch</td>
-                                <td>45.000.000 đ</td>
-                                <td>5</td>
-                                <td>10%</td>
-                                <td><span class="status active">●&nbsp;Đang hoạt động</span></td>
-                                <td>
-                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                                    <button class="btn btn-link text-warning p-0 ms-2"><i class="fa-solid fa-pen"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>SP004</td>
-                                <td>Samsung S20 Ultra</td>
-                                <td>30.000.000 đ</td>
-                                <td>20</td>
-                                <td>2%</td>
-                                <td><span class="status active">●&nbsp;Đang hoạt động</span></td>
-                                <td>
-                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                                    <button class="btn btn-link text-warning p-0 ms-2"><i class="fa-solid fa-pen"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>SP005</td>
-                                <td>Iphone 16 Pro Max</td>
-                                <td>31.000.000 đ</td>
-                                <td>15</td>
-                                <td>0%</td>
-                                <td><span class="status inactive">●&nbsp;Ngừng hoạt động</span></td>
-                                <td>
-                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                                    <button class="btn btn-link text-warning p-0 ms-2"><i class="fa-solid fa-pen"></i></button>
-                                </td>
-                            </tr>   
-                            <tr>
-                                <td>SP006</td>
-                                <td>HP Spectre x360</td>
-                                <td>28.000.000 đ</td>
-                                <td>8</td>
-                                <td>0%</td>
-                                <td><span class="status active">●&nbsp;Đang hoạt động</span></td>
-                                <td>
-                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                                    <button class="btn btn-link text-warning p-0 ms-2"><i class="fa-solid fa-pen"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>SP007</td>
-                                <td>Asus ZenBook 14</td>
-                                <td>22.000.000 đ</td>
-                                <td>12</td>
-                                <td>0%</td>
-                                <td><span class="status inactive">●&nbsp;Ngừng hoạt động</span></td>
-                                <td>
-                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                                    <button class="btn btn-link text-warning p-0 ms-2"><i class="fa-solid fa-pen"></i></button>
-                                </td>
-                            </tr>   
-                            <tr>
-                                <td>SP008</td>
-                                <td>Acer Swift 3</td>
-                                <td>18.000.000 đ</td>
-                                <td>25</td>
-                                <td>0%</td>
-                                <td><span class="status active">●&nbsp;Đang hoạt động</span></td>
-                                <td>
-                                    <button class="btn btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button>
-                                    <button class="btn btn-link text-warning p-0 ms-2"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-warning p-0 ms-2" style="margin-right: 10px;"><i
+                                            class="fa-solid fa-pen"></i></button>
+                                    <button class="btn btn-link text-danger p-0"><i
+                                            class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -193,8 +116,145 @@
             </div>
         </div>
     </div>
+    <!-- Modal thêm sản phẩm -->
+    <div class="modal fade" id="exampleModalAddProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thêm mới sản phẩm</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+      
+            <div class="modal-body">
+              <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                  <!-- Gán id cho form để chạy mã script -->
+                  <form id="addProductForm">
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="productCode" class="form-label">Mã sản phẩm <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="productCode" placeholder="Nhập mã sản phẩm">
+                        <small class="error-message text-danger"></small>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="productName" class="form-label">Tên sản phẩm <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="productName" placeholder="Nhập tên sản phẩm">
+                        <small class="error-message text-danger"></small>
+                      </div>
+                    </div>
+      
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="productCategory" class="form-label">Danh mục</label>
+                        <select class="form-select" id="productCategory">
+                          <option selected>Chọn danh mục</option>
+                          <option>Điện tử</option>
+                          <option>Thời trang</option>
+                          <option>Đồ gia dụng</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">Trạng thái</label>
+                        <div class="d-flex gap-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="productStatus" id="productActive" checked>
+                            <label class="form-check-label" for="productActive">Đang hoạt động</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="productStatus" id="productInactive">
+                            <label class="form-check-label" for="productInactive">Ngừng hoạt động</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="mb-3">
+                      <label class="form-label">Số lượng & Giá</label>
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Số lượng</th>
+                              <th>Giá</th>
+                              <th>Giá khuyến mãi</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><input type="number" class="form-control" value="1"></td>
+                              <td><input type="number" class="form-control" value="10000000"></td>
+                              <td><input type="number" class="form-control" value="9500000"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+      
+                    <div class="mb-3">
+                      <label for="productImage" class="form-label">Hình ảnh</label>
+                      <input type="file" class="form-control" id="productImage">
+                      <div class="mt-2">
+                        <small class="text-muted">Hoặc nhập URL hình ảnh:</small>
+                        <input type="text" class="form-control mt-1" placeholder="https://example.com/image.jpg">
+                      </div>
+                    </div>
+      
+                    <div class="mb-4">
+                      <label for="productSpecs" class="form-label">Chỉ tiêu sản phẩm</label>
+                      <textarea class="form-control" id="productSpecs" rows="3" placeholder="Nhập thông số kỹ thuật"></textarea>
+                    </div>
+      
+                    <div class="modal-footer px-0">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                      <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      
+    <script>
+        const form = document.querySelector('form');
+        const productCodeInput = document.getElementById('productCode');
+        const productNameInput = document.getElementById('productName');
+    
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+    
+            const productCode = productCodeInput.value.trim();
+            const productName = productNameInput.value.trim();
+            let isValid = true;
+    
+            if (!productCode) {
+                showError(productCodeInput, 'Mã sản phẩm không được để trống.');
+                isValid = false;
+            }
+            if (!productName) {
+                showError(productNameInput, 'Tên sản phẩm không được để trống.');
+                isValid = false;
+            }
+            if (isValid) {
+                alert('Thêm sản phẩm thành công!');
+                productCodeInput.value = '';
+                productNameInput.value = '';
+            } else {
+                alert('Vui lòng kiểm tra lại thông tin sản phẩm.');
+            }
+        });
+        function showError(input, message) {
+            const errorElement = input.nextElementSibling;
+            errorElement.textContent = message;
+        }
+    </script>
+    
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./product-manager.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./product.js"></script>
+    <script src="./product-list.js"></script>
 </body>
+
 </html>
