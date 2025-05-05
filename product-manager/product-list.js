@@ -48,6 +48,9 @@ let products = [
         // "created_at": "2021-01-01T00:00:00Z"
     }
 ];
+// Save products to localStorage
+window.localStorage.setItem("products", JSON.stringify(products));
+
 let filteredProducts = [...products]; // Khởi tạo danh sách sản phẩm đã lọc bằng danh sách sản phẩm ban đầu
 const tbodyEl = document.querySelector("tbody");
 function renderProducts() {

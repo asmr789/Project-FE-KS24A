@@ -37,6 +37,9 @@ let categories = [
     }
 ];
 
+// Retrieve products from localStorage
+const products = JSON.parse(localStorage.getItem('products')) || [];
+
 const tbodyEl = document.querySelector("tbody");
 let filteredCategories = [...categories]; // Danh sách danh mục đã lọc
 function renderCategories() {
@@ -66,12 +69,14 @@ function deleteCategory(index) {
     categoryToDeleteIndex = index;
     const category = categories[index];
 
-    // Kiểm tra nếu danh mục có sản phẩm
-    const products = JSON.parse(localStorage.getItem('products')) || [];
+    // Check if the category has associated products
     const hasProducts = products.some(product => product.category_id === category.category_code);
-
     if (hasProducts) {
-        alert(`Danh mục "${category.category_name}" không thể xoá vì đã có sản phẩm.`);
+        const toastBody = document.querySelector('#deleteToast .toast-body');
+        toastBody.textContent = `Không thể xoá danh mục "${category.category_name}" vì đã có sản phẩm liên quan!`;
+        const toastEl = document.getElementById('deleteToast');
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
         return;
     }
 
