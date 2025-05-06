@@ -44,7 +44,7 @@ function renderCategories() {
                 <td><span class="status ${statusClass}">●&nbsp;${statusText}</span></td>
                 <td>
                     <button onclick="deleteCategory(${realIndex})" class="btn btn-link text-danger p-0" style="margin-right: 10px;"><i class="fa-solid fa-trash"></i></button>
-                    <button class="btn btn-link text-warning p-0 me-2" data-bs-toggle="modal" data-bs-target="#editModalCategory"><i class="fa-solid fa-pen"></i></button>
+                    <button onclick="editCategory(${realIndex})" class="btn btn-link text-warning p-0 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
                 </td>
             </tr>`;
     }).join("");
@@ -119,7 +119,6 @@ document.querySelector('#editCategoryForm').addEventListener('submit', function 
 
     document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
 
-    // Validate updated code
     if (!updatedCode) {
         showError(document.querySelector('#updateCategoryCode'), 'Mã danh mục không được để trống');
         isValid = false;
@@ -133,7 +132,6 @@ document.querySelector('#editCategoryForm').addEventListener('submit', function 
         isValid = false;
     }
 
-    // Validate updated name
     if (!updatedName) {
         showError(document.querySelector('#updateCategoryName'), 'Tên danh mục không được để trống');
         isValid = false;
@@ -161,8 +159,8 @@ document.querySelector('#editCategoryForm').addEventListener('submit', function 
         updatePagination();
 
         const editModalEl = document.getElementById('editModalCategory');
-        const editModal = bootstrap.Modal.getInstance(editModalEl);
-        editModal.hide();
+        const modalInstance = bootstrap.Modal.getInstance(editModalEl);
+        modalInstance.hide();
 
         showSuccessToast(`Danh mục "${updatedName}" đã được cập nhật thành công!`);
     }
