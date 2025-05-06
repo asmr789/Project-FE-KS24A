@@ -74,9 +74,9 @@
                         <thead>
                             <tr>
                                 <th>Mã sản phẩm</th>
-                                <th>Tên sản phẩm <i class="fa-solid fa-arrow-down-short-wide"></i></th>
-                                <th>Giá <i class="fa-solid fa-arrow-down-short-wide"></i></th>
+                                <th>Tên sản phẩm <i class="fa fa-arrow-down" id="sortName" style="cursor: pointer;"></i></th>
                                 <th>Số lượng</th>
+                                <th>Giá <i class="fa fa-arrow-down" id="sortPrice" style="cursor: pointer;"></i></th>
                                 <th>Giảm giá</th>
                                 <th>Trạng thái</th>
                                 <th>Chức năng</th>
@@ -218,7 +218,7 @@
       </div>
       
     <script>
-        const form = document.querySelector('form');
+        const form = document.querySelector('#addProductForm');
         const productCodeInput = document.getElementById('productCode');
         const productNameInput = document.getElementById('productName');
     
