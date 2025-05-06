@@ -69,21 +69,6 @@ function renderProducts() {
     }).join("");
 }
 
-// Xoá sản phẩm====================================
-function deleteProducts(index) {
-    const product = products[index];
-    const confirmDelete = confirm(`Bạn có chắc chắn muốn xóa sản phẩm "${product.product_name}" không?`);
-
-    if (confirmDelete) {
-        products.splice(index, 1);
-        filteredProducts = [...products];
-        currentPage = 1;
-        renderProducts();
-        saveProductLocalStorage();
-        updatePagination();
-    }
-}
-
 // Lưu vào localStorage
 function saveProductLocalStorage() {
     window.localStorage.setItem("products", JSON.stringify(products));
@@ -213,6 +198,112 @@ document.addEventListener('DOMContentLoaded', () => {
         sortPriceIcon.addEventListener('click', () => sortProductsBy('price'));
     }
 })
+function showSuccessToast(message) {
+    const toastEl = document.getElementById('successToast');
+    const toastBody = toastEl.querySelector('.toast-body');
+    toastBody.textContent = message;
+    const toast = new bootstrap.Toast(toastEl);
+    toast.show();
+}
+let productToDeleteIndex = null;
+
+function deleteProducts(index) {
+    productToDeleteIndex = index;
+    const product = products[index];
+    const modalBody = document.querySelector('#confirmDeleteModal .modal-body p');
+    modalBody.textContent = `Bạn có chắc chắn muốn xoá sản phẩm "${product.product_name}" không?`;
+
+    const deleteModal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+    deleteModal.show();
+}
+
+document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
+    if (productToDeleteIndex !== null) {
+        const product = products[productToDeleteIndex];
+        products.splice(productToDeleteIndex, 1);
+        filteredProducts = [...products];
+        saveProductLocalStorage();
+        renderProducts();
+        updatePagination();
+
+        const deleteModalEl = document.getElementById('confirmDeleteModal');
+        const deleteModal = bootstrap.Modal.getInstance(deleteModalEl);
+        deleteModal.hide();
+
+        showSuccessToast(`Sản phẩm "${product.product_name}" đã được xoá thành công!`);
+    }
+});
+// Thêm san phẩm mới==========================
+const addProductForm = document.querySelector("#addProductForm");
+addProductForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(addProductForm);
+    
+    // Clear previous errors
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+    
+    // Validate required fields
+    let isValid = true;
+    const productCode = formData.get("product_code").trim();
+    const productName = formData.get("product_name").trim();
+    const stock = formData.get("stock");
+    const price = formData.get("price");
+    
+    if (!productCode) {
+        showError(document.getElementById('productCode'), 'Mã sản phẩm không được để trống');
+        isValid = false;
+    } else if (products.some(p => p.product_code.toLowerCase() === productCode.toLowerCase())) {
+        showError(document.getElementById('productCode'), 'Mã sản phẩm đã tồn tại');
+        isValid = false;
+    }
+    
+    if (!productName) {
+        showError(document.getElementById('productName'), 'Tên sản phẩm không được để trống');
+        isValid = false;
+    }
+    
+    if (!stock || stock < 0) {
+        showError(document.querySelector('input[name="stock"]'), 'Số lượng không hợp lệ');
+        isValid = false;
+    }
+    
+    if (!price || price < 0) {
+        showError(document.querySelector('input[name="price"]'), 'Giá không hợp lệ');
+        isValid = false;
+    }
+
+    if (isValid) {
+        const newProduct = {
+            product_code: productCode,
+            product_name: productName,
+            category_id: formData.get("category_id"),
+            stock: stock,
+            price: Number(price).toLocaleString('vi-VN') + ' đ',
+            discount: formData.get("discount") + ' %',
+            status: formData.get("status")
+        };
+
+        products.push(newProduct);
+        filteredProducts = [...products];
+        saveProductLocalStorage();
+        addProductForm.reset();
+        
+        const addProductModal = bootstrap.Modal.getInstance(document.getElementById("exampleModalAddProduct"));
+        addProductModal.hide();
+        
+        showSuccessToast(`Sản phẩm "${newProduct.product_name}" đã được thêm thành công!`);
+        
+        renderProducts();
+        updatePagination();
+    }
+});
+
+function showError(input, message) {
+    const errorElement = input.nextElementSibling;
+    if (errorElement && errorElement.classList.contains('error-message')) {
+        errorElement.textContent = message;
+    }
+}
 
 renderProducts();
 updatePagination();
