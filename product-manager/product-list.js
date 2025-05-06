@@ -260,6 +260,9 @@ addProductForm.addEventListener("submit", (e) => {
     if (!productName) {
         showError(document.getElementById('productName'), 'Tên sản phẩm không được để trống');
         isValid = false;
+    } else if (products.some(p => p.product_name.toLowerCase() === productName.toLowerCase())) {
+        showError(document.getElementById('productName'), 'Tên sản phẩm đã tồn tại');
+        isValid = false;
     }
     
     if (!stock || stock < 0) {
@@ -297,6 +300,8 @@ addProductForm.addEventListener("submit", (e) => {
         updatePagination();
     }
 });
+
+// Sửa sản phẩm===========================
 
 function showError(input, message) {
     const errorElement = input.nextElementSibling;

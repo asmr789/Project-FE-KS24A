@@ -113,11 +113,11 @@ document.querySelector('#editCategoryForm').addEventListener('submit', function 
     event.preventDefault();
     let isValid = true;
 
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
     const updatedCode = document.querySelector('#updateCategoryCode').value.trim();
     const updatedName = document.querySelector('#updateCategoryName').value.trim();
     const updatedStatus = document.querySelector('#editActiveStatus').checked ? 'ACTIVE' : 'INACTIVE';
-
-    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
 
     if (!updatedCode) {
         showError(document.querySelector('#updateCategoryCode'), 'Mã danh mục không được để trống');
@@ -238,7 +238,6 @@ const inactiveStatusInput = document.querySelector('#inactiveStatus');
 form.addEventListener('submit', function (event) {
   event.preventDefault();
   let isValid = true;
-
   const categoryCode = categoryCodeInput.value.trim();
   const categoryName = categoryNameInput.value.trim();
   const status = activeStatusInput.checked ? 'ACTIVE' : 'INACTIVE';
@@ -286,16 +285,12 @@ form.addEventListener('submit', function (event) {
     const addModal = bootstrap.Modal.getInstance(addModalEl);
     addModal.hide();
   
-    // Hiển thị toast thành công
-    const toastBody = document.querySelector('#deleteToast .toast-body');
-    toastBody.textContent = `Danh mục "${categoryName}" đã được thêm thành công!`;
-    const toastEl = document.getElementById('deleteToast');
-    const toast = new bootstrap.Toast(toastEl);
-    toast.show();
+    // Hiển thị toast thành công sử dụng successToast
+    showSuccessToast(`Danh mục "${categoryName}" đã được thêm thành công!`);
   
     form.reset();
   } else {
-    alert('Vui lòng kiểm tra lại thông tin danh mục.');
+    showErrorToast('Vui lòng kiểm tra lại thông tin danh mục.');
   }
 });
 
